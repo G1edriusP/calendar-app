@@ -3,15 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "node ./scripts/install-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "node ./scripts/start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint . --ext .js,.jsx"
   },
   "dependencies": {
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "shell-utils": "^1.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
