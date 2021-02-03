@@ -9,6 +9,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Calendar from './ui/containers/calendar';
 import Day from './ui/containers/day';
 
+// Utilities
+import {LocaleConfig} from 'react-native-calendars';
+import * as Constants from './common/Constants';
+
+LocaleConfig.locales['lt'] = {
+  monthNames: Constants.monthNames,
+  monthNamesShort: Constants.shortMonthNames,
+  dayNames: Constants.dayNames,
+  dayNamesShort: Constants.shortDayNames,
+};
+
+LocaleConfig.defaultLocale = 'lt';
+
 const Stack = createStackNavigator();
 
 const App = () => {

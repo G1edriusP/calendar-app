@@ -1,3 +1,3 @@
-import Calendar from './Calendar';
+import CalendarScreen from './Calendar';
 
-export default Calendar;
+export default CalendarScreen;

@@ -1,13 +1,24 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
 
+// Components
+import {Text, View, Button} from 'react-native';
+import {Calendar} from 'react-native-calendars';
+
+// Utilities
+import {renderCustomHeader} from '../../../common/Utilities';
+
+// Styles
 import Styles from './styles';
 
-const Calendar = ({navigation}) => (
+const CalendarScreen = ({navigation}) => (
   <View styles={Styles.container}>
-    <Text>Calendar</Text>
-    <Button title="Diena" onPress={() => navigation.navigate('Day')} />
+    <Calendar
+      onDayPress={(date) => {
+        console.log(date);
+      }}
+      renderHeader={(date) => renderCustomHeader(date)}
+    />
   </View>
 );
 
-export default Calendar;
+export default CalendarScreen;
