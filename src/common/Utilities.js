@@ -25,3 +25,13 @@ export const renderCustomHeader = (date) => {
     </Text>
   );
 };
+
+export const getFullDate = () => {
+  let dateNow = new Date();
+
+  const yyyy = dateNow.getFullYear();
+  const mm = String(dateNow.getMonth() + 1).padStart(2, '0');
+  const dd = String(dateNow.getDate()).padStart(2, '0');
+
+  return String(`${yyyy}-${mm}-${dd}`);
+};
