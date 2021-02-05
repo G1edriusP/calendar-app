@@ -44,8 +44,6 @@ const Day = ({route, navigation}) => {
         keyExtractor={(item) => item.id}
         renderItem={(item) => <NewsItem item={item} />}
       />
-
-      <Button title="Kalendorius" onPress={() => console.log(news)} />
     </View>
   );
 };
