@@ -1,17 +1,22 @@
 import React, {useState, useEffect} from 'react';
 
 // Components
-import {View, Button} from 'react-native';
+import {View, StatusBar, FlatList, Text} from 'react-native';
 import {Calendar} from 'react-native-calendars';
+
+// Custom components
+import CalendarHeader from '../../components/calendarHeader';
 
 // API
 import {getHolidays} from '../../../data/api/Calls';
 
 // Utilities
-import {renderCustomHeader, getFullDate} from '../../../common/Utilities';
+import {getFullDate, formatDates, onDayPress} from '../../../common/Utilities';
+import * as Colors from '../../../common/Colors';
 
 // Styles
 import Styles from './styles';
+import {calendarTheme} from '../../../common/Themes';
 
 const CalendarScreen = ({navigation}) => {
   const dateNow = getFullDate();
@@ -22,16 +27,11 @@ const CalendarScreen = ({navigation}) => {
   const [dates, setDates] = useState({});
 
   useEffect(() => {
-    getHolidays(setHolidays, setLoading);
+    //getHolidays(setHolidays, setLoading);
   }, []);
 
   useEffect(() => {
-    holidays.map((item) => {
-      const newDate = {
-        [item['date']]: {selected: true, selectedColor: 'red'},
-      };
-      setDates((oldDates) => ({...oldDates, ...newDate}));
-    });
+    formatDates(holidays, setDates);
   }, [isLoading]);
 
   if (isLoading) {
@@ -40,31 +40,21 @@ const CalendarScreen = ({navigation}) => {
   }
 
   return (
-    <View styles={Styles.container}>
+    <View style={Styles.container}>
+      <StatusBar hidden />
       <Calendar
+        theme={calendarTheme}
+        firstDay={1}
         hideExtraDays
+        onDayPress={(date) => {
+          onDayPress(date, holidays, navigation);
+        }}
         markedDates={{
           ...dates,
-          [dateNow]: {selected: true, selectedColor: 'green'},
+          [dateNow]: {selected: true, selectedColor: Colors.OCEAN_GREEN},
         }}
-        onDayPress={(date) => {
-          const holiday = holidays.find(
-            (item) => item['date'] === date['dateString'],
-          );
-
-          if (holiday != undefined) {
-            navigation.navigate('Day', {
-              date: date,
-              holiday: holiday,
-              isHoliday: true,
-            });
-          } else {
-            navigation.navigate('Day', {date: date, isHoliday: false});
-          }
-        }}
-        renderHeader={(date) => renderCustomHeader(date)}
+        renderHeader={(date) => <CalendarHeader date={date} />}
       />
-      <Button title="test" onPress={() => console.log()} />
     </View>
   );
 };

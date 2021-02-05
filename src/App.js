@@ -27,7 +27,7 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Calendar" component={Calendar} />
         <Stack.Screen name="Day" component={Day} />
       </Stack.Navigator>

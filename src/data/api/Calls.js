@@ -2,10 +2,14 @@ import {Alert} from 'react-native';
 
 import Axios from 'axios';
 
+// Utilities
 import {holidayApiUrl, newsApiUrl} from './Utilities';
 
 export const getHolidays = async (setHolidays, setLoading) => {
-  await Axios.get(holidayApiUrl)
+  const year = new Date().getFullYear();
+  const countryCode = 'LT';
+
+  await Axios.get(holidayApiUrl(year, countryCode))
     .then((value) => {
       setHolidays(value.data);
       setLoading(false);

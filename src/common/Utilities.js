@@ -1,29 +1,11 @@
-import React from 'react';
-
-import {Text} from 'react-native';
-
-// Utilities
 import * as Constants from './Constants';
 
 export const getMonthName = (monthIndex) => {
   return Constants.monthNames[monthIndex];
 };
 
-const checkYear = (year) => {
+export const checkYear = (year) => {
   return new Date().getYear() === year;
-};
-
-export const renderCustomHeader = (date) => {
-  const monthName = getMonthName(date.getMonth());
-  const renderYear = checkYear(date.getYear());
-
-  return renderYear ? (
-    <Text>{monthName}</Text>
-  ) : (
-    <Text>
-      {monthName}, {date.getFullYear()}
-    </Text>
-  );
 };
 
 export const getFullDate = () => {
@@ -38,4 +20,27 @@ export const getFullDate = () => {
 
 export const getMonthNameWithLimb = (monthIndex) => {
   return Constants.monthNamesWithLimb[monthIndex];
+};
+
+export const formatDates = (holidays, setDates) => {
+  holidays.map((item) => {
+    const newDate = {
+      [item['date']]: {selected: true, selectedColor: '#F18077'},
+    };
+    setDates((oldDates) => ({...oldDates, ...newDate}));
+  });
+};
+
+export const onDayPress = (date, holidays, navigation) => {
+  const holiday = holidays.find((item) => item['date'] === date['dateString']);
+
+  if (holiday != undefined) {
+    navigation.navigate('Day', {
+      date: date,
+      holiday: holiday,
+      isHoliday: true,
+    });
+  } else {
+    navigation.navigate('Day', {date: date, isHoliday: false});
+  }
 };

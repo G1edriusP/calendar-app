@@ -1,4 +1,6 @@
-import React, {useCallback} from 'react';
+import React from 'react';
+
+// Components
 import {
   Text,
   View,
@@ -8,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 
+// Styles
 import Styles from './styles';
 
 const NewsItem = ({item}) => {

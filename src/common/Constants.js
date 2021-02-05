@@ -13,14 +13,29 @@ export const monthNames = [
   'Gruodis',
 ];
 
+export const monthNamesWithLimb = [
+  'Sausio',
+  'Vasario',
+  'Kovo',
+  'Balandžio',
+  'Gegužės',
+  'Birželio',
+  'Liepos',
+  'Rugpjūčio',
+  'Rugsėjo',
+  'Spalio',
+  'Lapkričio',
+  'Gruodžio',
+];
+
 export const dayNames = [
+  'Sekmadienis',
   'Pirmadienis',
   'Antradienis',
   'Trečiadienis',
   'Ketvirtadienis',
   'Penktadienis',
   'Šeštadienis',
-  'Sekmadienis',
 ];
 export const shortMonthNames = [
   'sau',
@@ -36,19 +51,4 @@ export const shortMonthNames = [
   'lap',
   'gru',
 ];
-export const shortDayNames = ['Pir', 'Ant', 'Tre', 'Ket', 'Pen', 'Šeš', 'Sek'];
-
-export const monthNamesWithLimb = [
-  'Sausio',
-  'Vasario',
-  'Kovo',
-  'Balandžio',
-  'Gegužės',
-  'Birželio',
-  'Liepos',
-  'Rugpjūčio',
-  'Rugsėjo',
-  'Spalio',
-  'Lapkričio',
-  'Gruodžio',
-];
+export const shortDayNames = ['S', 'P', 'A', 'T', 'K', 'Pn', 'Š'];
