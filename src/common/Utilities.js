@@ -5,7 +5,7 @@ import {Text} from 'react-native';
 // Utilities
 import * as Constants from './Constants';
 
-const getMonthName = (monthIndex) => {
+export const getMonthName = (monthIndex) => {
   return Constants.monthNames[monthIndex];
 };
 
@@ -34,4 +34,8 @@ export const getFullDate = () => {
   const dd = String(dateNow.getDate()).padStart(2, '0');
 
   return String(`${yyyy}-${mm}-${dd}`);
+};
+
+export const getMonthNameWithLimb = (monthIndex) => {
+  return Constants.monthNamesWithLimb[monthIndex];
 };

@@ -48,11 +48,23 @@ const CalendarScreen = ({navigation}) => {
           [dateNow]: {selected: true, selectedColor: 'green'},
         }}
         onDayPress={(date) => {
-          console.log(holidays);
+          const holiday = holidays.find(
+            (item) => item['date'] === date['dateString'],
+          );
+
+          if (holiday != undefined) {
+            navigation.navigate('Day', {
+              date: date,
+              holiday: holiday,
+              isHoliday: true,
+            });
+          } else {
+            navigation.navigate('Day', {date: date, isHoliday: false});
+          }
         }}
         renderHeader={(date) => renderCustomHeader(date)}
       />
-      <Button title="test" onPress={() => console.log(dates)} />
+      <Button title="test" onPress={() => console.log()} />
     </View>
   );
 };
