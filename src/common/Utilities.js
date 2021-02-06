@@ -9,7 +9,7 @@ export const getMonthName = (monthIndex) => {
 };
 
 export const checkYear = (year) => {
-  return new Date().getYear() != year;
+  return new Date().getFullYear() != year;
 };
 
 export const getFullDate = () => {
@@ -27,6 +27,8 @@ export const getMonthNameWithLimb = (monthIndex) => {
 };
 
 export const formatDates = (holidays, setDates) => {
+  console.log(holidays);
+
   holidays.map((item) => {
     const newDate = {
       [item['date']]: {selected: true, selectedColor: '#F18077'},

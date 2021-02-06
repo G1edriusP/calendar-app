@@ -34,6 +34,7 @@ const CalendarScreen = ({navigation}) => {
   const dateNow = getFullDate();
 
   const [holidays, setHolidays] = useState([]);
+  const [years, setYears] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
   const [isOnline, setStatus] = useState(false);
@@ -61,7 +62,7 @@ const CalendarScreen = ({navigation}) => {
 
   useEffect(() => {
     formatDates(holidays, setDates);
-  }, [isLoading]);
+  }, [holidays]);
 
   if (isLoading) {
     return <PacmanIndicator color={Colors.YELLOW_CRAYOLA} />;
@@ -82,7 +83,16 @@ const CalendarScreen = ({navigation}) => {
           ...dates,
           [dateNow]: {selected: true, selectedColor: Colors.OCEAN_GREEN},
         }}
-        renderHeader={(date) => <CalendarHeader date={date} />}
+        renderHeader={(date) => (
+          <CalendarHeader
+            date={date}
+            years={years}
+            setYears={setYears}
+            setHolidays={setHolidays}
+            setLoading={setLoading}
+            baseHolidaysUrl={holidayApiUrl(date.getFullYear(), COUNTRY_CODE)}
+          />
+        )}
       />
     </View>
   );

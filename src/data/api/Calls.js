@@ -8,7 +8,7 @@ export const getData = async (baseUrl, setData, setLoading, errorMessage) => {
       setData(value.data);
       setLoading(false);
     })
-    .catch(() => {
-      Alert.alert('Klaida!', errorMessage);
+    .catch((err) => {
+      Alert.alert('Klaida!', err.message);
     });
 };
