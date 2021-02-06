@@ -66,9 +66,6 @@ const CalendarScreen = ({navigation}) => {
   }, [holidays]);
 
   if (isLoading) {
-    // setTimeout(() => {
-    //   SplashScreen.hide();
-    // }, 300);
     return <PacmanIndicator color={Colors.YELLOW_CRAYOLA} />;
   }
 
