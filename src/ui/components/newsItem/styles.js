@@ -30,9 +30,16 @@ const Styles = StyleSheet.create({
     margin: moderateScale(15),
   },
 
-  cardSubTitle: {
+  cardSubTitleLabel: {
+    fontSize: moderateScale(14),
+    fontFamily: 'sans-serif',
     color: Colors.JET,
+  },
+
+  cardSubTitle: {
+    fontSize: moderateScale(14),
     fontFamily: 'sans-serif-light',
+    color: Colors.JET,
   },
 
   dateFormat: {

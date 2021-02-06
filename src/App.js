@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen';
 
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
@@ -12,6 +13,7 @@ import Day from './ui/containers/day';
 // Utilities
 import {LocaleConfig} from 'react-native-calendars';
 import * as Constants from './common/Constants';
+import {useEffect} from 'react/cjs/react.development';
 
 LocaleConfig.locales['lt'] = {
   monthNames: Constants.monthNames,
@@ -25,6 +27,12 @@ LocaleConfig.defaultLocale = 'lt';
 const Stack = createStackNavigator();
 
 const App = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 50);
+  });
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>

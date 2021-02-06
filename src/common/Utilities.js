@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import {Alert, Linking} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import RNRestart from 'react-native-restart';
 
@@ -27,8 +27,6 @@ export const getMonthNameWithLimb = (monthIndex) => {
 };
 
 export const formatDates = (holidays, setDates) => {
-  console.log(holidays);
-
   holidays.map((item) => {
     const newDate = {
       [item['date']]: {selected: true, selectedColor: '#F18077'},
@@ -76,4 +74,13 @@ export const checkInternet = (setStatus) => {
       setStatus(state.isConnected);
     }
   });
+};
+
+export const openUrl = async (url) => {
+  const supported = await Linking.canOpenURL(url);
+  if (supported) {
+    await Linking.openURL(url);
+  } else {
+    Alert.alert('Klaida!', 'Negalima atidaryti pasirinkto straipsnio.');
+  }
 };

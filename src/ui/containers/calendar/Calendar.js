@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 // Components
 import {View, StatusBar} from 'react-native';
 import {Calendar} from 'react-native-calendars';
+import SplashScreen from 'react-native-splash-screen';
 
 // Custom components
 import CalendarHeader from '../../components/calendarHeader';
@@ -65,6 +66,9 @@ const CalendarScreen = ({navigation}) => {
   }, [holidays]);
 
   if (isLoading) {
+    // setTimeout(() => {
+    //   SplashScreen.hide();
+    // }, 300);
     return <PacmanIndicator color={Colors.YELLOW_CRAYOLA} />;
   }
 
