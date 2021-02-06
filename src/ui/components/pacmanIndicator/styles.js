@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
-import {moderateScale} from 'react-native-size-matters';
 
 import * as Colors from '../../../common/Colors';
 
 const Styles = StyleSheet.create({
-  headerText: {
-    color: Colors.SNOW,
-    fontSize: moderateScale(24),
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.JET,
   },
 });
 

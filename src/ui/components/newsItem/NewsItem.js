@@ -4,21 +4,27 @@ import React from 'react';
 import {
   Text,
   View,
-  Image,
   TouchableOpacity,
   Linking,
   Alert,
+  Image,
 } from 'react-native';
+
+// Utilities
+import {formatNewsItemDate} from '../../../common/Utilities';
 
 // Styles
 import Styles from './styles';
 
 const NewsItem = ({item}) => {
   const newsItem = item.item;
+  const formatedDate = formatNewsItemDate(newsItem.publishedAt, 0, 10);
+  const formatedTime = formatNewsItemDate(newsItem.publishedAt, 11, 16);
 
   return (
     <TouchableOpacity
       style={Styles.container}
+      // TODO: iskelti
       onPress={async () => {
         const supported = await Linking.canOpenURL(newsItem.url);
         if (supported) {
@@ -28,14 +34,22 @@ const NewsItem = ({item}) => {
         }
       }}>
       <View>
-        <Text>{newsItem.title}</Text>
-        <Text>{newsItem.publishedAt}</Text>
-        <Image
-          style={{width: 250, height: 150, resizeMode: 'cover'}}
-          source={{
-            uri: newsItem.imageUrl,
-          }}
-        />
+        <Image source={{uri: newsItem.imageUrl}} style={Styles.cardImage} />
+      </View>
+      <View style={Styles.cardTitleContainer}>
+        <View>
+          <Text style={Styles.cardTitle}>{newsItem.title}</Text>
+        </View>
+        <View style={Styles.dateFormat}>
+          <View>
+            <Text>Data:</Text>
+            <Text style={Styles.cardSubTitle}>{formatedDate}</Text>
+          </View>
+          <View>
+            <Text>Laikas:</Text>
+            <Text style={Styles.cardSubTitle}>{formatedTime}</Text>
+          </View>
+        </View>
       </View>
     </TouchableOpacity>
   );

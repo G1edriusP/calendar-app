@@ -14,11 +14,11 @@ const CalendarHeader = ({date}) => {
   const renderYear = checkYear(date.getYear());
 
   return renderYear ? (
-    <Text style={Styles.headerText}>{monthName}</Text>
-  ) : (
     <Text style={Styles.headerText}>
       {monthName}, {date.getFullYear()}
     </Text>
+  ) : (
+    <Text style={Styles.headerText}>{monthName}</Text>
   );
 };
 

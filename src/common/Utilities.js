@@ -1,3 +1,7 @@
+import {Alert} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import RNRestart from 'react-native-restart';
+
 import * as Constants from './Constants';
 
 export const getMonthName = (monthIndex) => {
@@ -5,7 +9,7 @@ export const getMonthName = (monthIndex) => {
 };
 
 export const checkYear = (year) => {
-  return new Date().getYear() === year;
+  return new Date().getYear() != year;
 };
 
 export const getFullDate = () => {
@@ -31,6 +35,10 @@ export const formatDates = (holidays, setDates) => {
   });
 };
 
+export const formatNewsItemDate = (date, start, end) => {
+  return `${date.substring(start, end)}`;
+};
+
 export const onDayPress = (date, holidays, navigation) => {
   const holiday = holidays.find((item) => item['date'] === date['dateString']);
 
@@ -43,4 +51,27 @@ export const onDayPress = (date, holidays, navigation) => {
   } else {
     navigation.navigate('Day', {date: date, isHoliday: false});
   }
+};
+
+export const checkInternet = (setStatus) => {
+  return NetInfo.addEventListener((state) => {
+    if (!state.isConnected) {
+      setStatus(state.isConnected);
+
+      Alert.alert(
+        'Nėra interneto ryšio!',
+        'Programos veikimui reikalingas interneto ryšys. Mėginkite iš naujo.',
+        [
+          {
+            text: 'Perkrauti',
+            onPress: () => {
+              RNRestart.Restart();
+            },
+          },
+        ],
+      );
+    } else {
+      setStatus(state.isConnected);
+    }
+  });
 };

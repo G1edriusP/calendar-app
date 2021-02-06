@@ -1,3 +1,5 @@
+import {Dimensions} from 'react-native';
+
 export const monthNames = [
   'Sausis',
   'Vasaris',
@@ -52,3 +54,16 @@ export const shortMonthNames = [
   'gru',
 ];
 export const shortDayNames = ['S', 'P', 'A', 'T', 'K', 'Pn', 'Š'];
+
+// Dimensions
+export const SLIDER_WIDTH = Dimensions.get('window').width;
+export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
+export const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 6) / 4);
+
+// Holidays info
+export const YEAR = new Date().getFullYear();
+export const COUNTRY_CODE = 'LT';
+
+// Error messages
+export const errorMessageHolidays = 'Nepavyksta gauti duomenų apie šventes.';
+export const errorMessageNews = 'Nepavyksta gauti duomenų apie naujienas.';
